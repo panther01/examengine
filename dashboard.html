@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<div>
+
+<h1 id="welcome">Welcome</h1>
+
+<p id="today"></p>
+
+</div>
+
+<button id="logoutBtn">
+Logout
+</button>
+
+</header>
+
+<div class="cards">
+
+<div class="card big">
+
+<h2>Overall Progress</h2>
+
+<div class="progress">
+
+<div id="overallFill"></div>
+
+</div>
+
+<h3 id="overallPercent">0%</h3>
+
+</div>
+
+<div class="card">
+
+<h2>Questions Solved</h2>
+
+<h1 id="questionsSolved">0</h1>
+
+</div>
+
+<div class="card">
+
+<h2>Accuracy</h2>
+
+<h1 id="accuracy">0%</h1>
+
+</div>
+
+<div class="card">
+
+<h2>Bookmarks</h2>
+
+<h1 id="bookmarks">0</h1>
+
+</div>
+
+<div class="card">
+
+<h2>Study Streak</h2>
+
+<h1 id="streak">0 🔥</h1>
+
+</div>
+
+</div>
+
+<h2 class="sectionTitle">
+
+Subjects
+
+</h2>
+
+<div class="subjects">
+
+<div class="subjectCard">
+
+<h3>Indian Polity</h3>
+
+<div class="miniProgress">
+
+<div style="width:0%" id="polityBar"></div>
+
+</div>
+
+<p id="polityText">0%</p>
+
+<button onclick="gotoSubject('polity')">
+
+Continue →
+
+</button>
+
+</div>
+
+<div class="subjectCard">
+
+<h3>History</h3>
+
+<div class="miniProgress">
+
+<div style="width:0%" id="historyBar"></div>
+
+</div>
+
+<p id="historyText">0%</p>
+
+<button onclick="gotoSubject('history')">
+
+Continue →
+
+</button>
+
+</div>
+
+<div class="subjectCard">
+
+<h3>Science</h3>
+
+<div class="miniProgress">
+
+<div style="width:0%" id="scienceBar"></div>
+
+</div>
+
+<p id="scienceText">0%</p>
+
+<button onclick="gotoSubject('science')">
+
+Continue →
+
+</button>
+
+</div>
+
+
+<div class="subjectCard">
+
+  <h3>Indian Economy</h3>
+
+  <div class="miniProgress">
+    <div style="width:0%" id="economicsBar"></div>
+  </div>
+
+  <p id="economicsText">0%</p>
+
+  <button onclick="gotoSubject('economics')">
+    Continue →
+  </button>
+
+</div>
+
+<div class="subjectCard">
+
+  <h3>Environment &amp; Ecology</h3>
+
+  <div class="miniProgress">
+    <div style="width:0%" id="environmentBar"></div>
+  </div>
+
+  <p id="environmentText">0%</p>
+
+  <button onclick="gotoSubject('environment')">
+    Continue →
+  </button>
+
+</div>
+
+
+<div class="subjectCard">
+
+<h3>Geography</h3>
+
+<div class="miniProgress">
+
+<div style="width:0%" id="geographyBar"></div>
+
+</div>
+
+<p id="geographyText">0%</p>
+
+<button onclick="gotoSubject('geography')">
+
+Continue →
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

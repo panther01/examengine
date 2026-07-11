@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Select Subject</title>
+
+<link rel="stylesheet" href="css/subjects.css">
+
+</head>
+
+<body>
+
+<div class="background">
+
+<div class="blob blob1"></div>
+
+<div class="blob blob2"></div>
+
+</div>
+
+<div class="container">
+
+<header>
+
+<div>
+
+<h1 id="welcome">
+Choose Your Subject
+</h1>
+
+<p id="subtitle">
+Continue your preparation
+</p>
+
+</div>
+
+<div class="headerButtons">
+
+<button id="dashboardBtn">
+
+🏠 Dashboard
+
+</button>
+
+<button id="logoutBtn">
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+
+<section class="subjects">
+
+<div
+class="subjectCard"
+onclick="openSubject('polity')">
+
+<div class="subjectTop">
+
+<div>
+
+<h2>Indian Polity</h2>
+
+<p>
+
+954 Questions
+
+</p>
+
+</div>
+
+<div class="progressCircle">
+
+<span id="polityPercent">
+
+0%
+
+</span>
+
+</div>
+
+</div>
+
+<div class="progressBar">
+
+<div id="polityBar"></div>
+
+</div>
+
+<div class="bottom">
+
+<div>
+
+Accuracy
+
+<b id="polityAccuracy">
+
+0%
+
+</b>
+
+</div>
+
+<div>
+
+Bookmarks
+
+<b id="polityBookmarks">
+
+0
+
+</b>
+
+</div>
+
+</div>
+
+<button>
+
+Continue →
+
+</button>
+
+</div>
+
+<div
+class="subjectCard"
+onclick="openSubject('history')">
+
+<div class="subjectTop">
+
+<div>
+
+<h2>History</h2>
+
+<p>
+
+1886 Questions
+
+</p>
+
+</div>
+
+<div class="progressCircle">
+
+<span id="historyPercent">
+
+0%
+
+</span>
+
+</div>
+
+</div>
+
+<div class="progressBar">
+
+<div id="historyBar"></div>
+
+</div>
+
+<div class="bottom">
+
+<div>
+
+Accuracy
+
+<b id="historyAccuracy">
+
+0%
+
+</b>
+
+</div>
+
+<div>
+
+Bookmarks
+
+<b id="historyBookmarks">
+
+0
+
+</b>
+
+</div>
+
+</div>
+
+<button>
+
+Continue →
+
+</button>
+
+</div>
+
+<div
+class="subjectCard"
+onclick="openSubject('science')">
+
+<div class="subjectTop">
+
+<div>
+
+<h2>General Science</h2>
+
+<p>
+
+1382 Questions
+
+</p>
+
+</div>
+
+<div class="progressCircle">
+
+<span id="sciencePercent">
+
+0%
+
+</span>
+
+</div>
+
+</div>
+
+<div class="progressBar">
+
+<div id="scienceBar"></div>
+
+</div>
+
+<div class="bottom">
+
+<div>
+
+Accuracy
+
+<b id="scienceAccuracy">
+
+0%
+
+</b>
+
+</div>
+
+<div>
+
+Bookmarks
+
+<b id="scienceBookmarks">
+
+0
+
+</b>
+
+</div>
+
+</div>
+
+<button>
+
+Continue →
+
+</button>
+
+</div>
+
+<div
+class="subjectCard"
+onclick="openSubject('geography')">
+
+<div class="subjectTop">
+
+<div>
+
+<h2>Geography</h2>
+
+<p>
+
+1527 Questions
+
+</p>
+
+</div>
+
+<div class="progressCircle">
+
+<span id="geographyPercent">
+
+0%
+
+</span>
+
+</div>
+
+</div>
+
+<div class="progressBar">
+
+<div id="geographyBar"></div>
+
+</div>
+
+<div class="bottom">
+
+<div>
+
+Accuracy
+
+<b id="geographyAccuracy">
+
+0%
+
+</b>
+
+</div>
+
+<div>
+
+Bookmarks
+
+<b id="geographyBookmarks">
+
+0
+
+</b>
+
+</div>
+
+</div>
+
+<button>
+
+Continue →
+
+</button>
+
+</div>
+
+
+<div class="subjectCard" onclick="openSubject('economics')">
+
+  <div class="subjectTop">
+
+    <div>
+      <h2>Indian Economy</h2>
+      <p>1364 Questions</p>
+    </div>
+
+    <div class="progressCircle">
+      <span id="economicsPercent">0%</span>
+    </div>
+
+  </div>
+
+  <div class="progressBar">
+    <div id="economicsBar"></div>
+  </div>
+
+  <div class="bottom">
+
+    <div>
+      Accuracy
+      <b id="economicsAccuracy">0%</b>
+    </div>
+
+    <div>
+      Bookmarks
+      <b id="economicsBookmarks">0</b>
+    </div>
+
+  </div>
+
+  <button>
+    Continue →
+  </button>
+
+</div>
+
+<div class="subjectCard" onclick="openSubject('environment')">
+
+  <div class="subjectTop">
+
+    <div>
+      <h2>Environment &amp; Ecology</h2>
+      <p>482 Questions</p>
+    </div>
+
+    <div class="progressCircle">
+      <span id="environmentPercent">0%</span>
+    </div>
+
+  </div>
+
+  <div class="progressBar">
+    <div id="environmentBar"></div>
+  </div>
+
+  <div class="bottom">
+
+    <div>
+      Accuracy
+      <b id="environmentAccuracy">0%</b>
+    </div>
+
+    <div>
+      Bookmarks
+      <b id="environmentBookmarks">0</b>
+    </div>
+
+  </div>
+
+  <button>
+    Continue →
+  </button>
+
+</div>
+
+
+</section>
+
+</div>
+
+<script src="js/subjects.js"></script>
+
+</body>
+
+</html>

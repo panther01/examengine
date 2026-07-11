@@ -1,0 +1,3 @@
+requireLogin();
+loadUser();
+loadQuiz();

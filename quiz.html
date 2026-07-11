@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPPSC PYQ Practice</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<script>
+
+const user =
+JSON.parse(
+localStorage.getItem("currentUser")
+);
+
+if(!user){
+
+location.href="index.html";
+
+}
+
+</script>
+
+<body data-theme="light">
+
+
+<!-- ============ QUIZ APP (shown once a subject loads) ============ -->
+<div class="app" id="appScreen" style="display:none">
+
+  <!-- SIDEBAR / INDEX -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-row">
+        <div class="seal">·</div>
+        <div>
+          <h1>Loading…</h1>
+          <p>UPPSC</p>
+        </div>
+      </div>
+      <button class="link-btn" id="switchSubjectBtn" style="margin-top:10px;">⇄ Dashboard</button>
+    </div>
+
+    <div class="sidebar-search">
+      <input type="text" id="searchInput" placeholder="Search questions…" autocomplete="off">
+    </div>
+
+    <div class="sidebar-progress">
+      <div class="sp-top"><span>Overall progress</span><span id="spText">0 / 0</span></div>
+      <div class="sp-bar"><div class="sp-bar-fill" id="spFill" style="width:0%"></div></div>
+    </div>
+
+    <nav class="chapter-list" id="chapterList"></nav>
+  </aside>
+  <div class="modal-overlay" id="sidebarBackdrop"></div>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" title="Chapters">☰</button>
+      <div class="topbar-title">
+        <div class="crumb" id="crumb">Chapter · Question</div>
+        <h2 id="topTitle">Loading…</h2>
+      </div>
+      <div class="topbar-actions">
+        <div class="stat-pill" id="scorePill">✓ <b id="correctCount">0</b>&nbsp;·&nbsp;✗ <b id="wrongCount">0</b></div>
+        <button class="icon-btn" id="statsBtn" title="Your stats">📊</button>
+        <button class="icon-btn" id="themeBtn" title="Toggle night mode">🌙</button>
+        <button class="btn" id="logoutBtn">Logout</button>
+        <button class="icon-btn" id="settingsBtn" title="Settings">⚙️</button>
+      </div>
+    </div>
+
+    <div class="qwrap"><div class="qcard" id="qcard"><!-- injected --></div></div>
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- STATS MODAL -->
+<div class="modal-overlay" id="statsModal">
+  <div class="modal">
+    <button class="icon-btn modal-close" data-close="statsModal">✕</button>
+    <h3>Your progress</h3>
+    <div class="sub">Across all chapters</div>
+    <div class="stat-grid" id="statGrid"></div>
+    <h4 style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint);margin:18px 0 12px;">Chapter breakdown</h4>
+    <div id="chapterBars"></div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay" id="settingsModal">
+  <div class="modal">
+    <button class="icon-btn modal-close" data-close="settingsModal">✕</button>
+    <h3>Settings</h3>
+    <div class="sub">Preferences are saved on this device</div>
+
+    <div class="settings-row">
+      <div><div class="label">Night mode</div><div class="desc">Easier on the eyes for long sessions</div></div>
+      <label class="switch"><input type="checkbox" id="themeToggle"><span class="slider"></span></label>
+    </div>
+    <div class="settings-row">
+      <div><div class="label">Shuffle options</div><div class="desc">Randomize option order per question</div></div>
+      <label class="switch"><input type="checkbox" id="shuffleToggle"><span class="slider"></span></label>
+    </div>
+    <div class="settings-row">
+      <div><div class="label">Auto-advance</div><div class="desc">Jump to next question 1.5s after answering</div></div>
+      <label class="switch"><input type="checkbox" id="autoAdvanceToggle"></label>
+    </div>
+    <div class="settings-row">
+      <div>
+        <div class="label">Reset all progress</div>
+        <div class="desc">Clears answers, bookmarks &amp; stats — cannot be undone</div>
+      </div>
+      <button class="btn" id="resetBtn" style="border-color:var(--wrong);color:var(--wrong);">Reset</button>
+    </div>
+    <div class="settings-row">
+      <div>
+        <div class="label">Backup progress</div>
+        <div class="desc">Export or import your progress as a file</div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="link-btn" id="exportBtn">Export</button>
+        <button class="link-btn" id="importBtn">Import</button>
+        <input type="file" id="importFile" accept="application/json" style="display:none">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK PRACTICE PICKER (search results / jump) -->
+<div class="modal-overlay" id="searchModal">
+  <div class="modal">
+    <button class="icon-btn modal-close" data-close="searchModal">✕</button>
+    <h3 id="searchTitle">Search results</h3>
+    <div class="sub" id="searchSub">—</div>
+    <div id="searchResults"></div>
+  </div>
+</div>
+
+<!--
+  Loader: reads ?subject=polity or ?subject=geography from the URL and
+  synchronously injects the matching data file BEFORE app.js runs, since
+  app.js needs QUIZ_DATA to exist the moment it executes.
+
+  Rename your data files to data-polity.js, data-geography.js and
+  data-science.js and keep them in the same folder as this index.html.
+-->
+<script>
+(function () {
+var DATA_FILES = {
+  polity: "data/data-polity.js",
+  geography: "data/data-geography.js",
+  science: "data/data-science.js",
+  history: "data/data-history.js",
+  economics: "data/data-economics.js",
+  environment: "data/data-environment.js"
+};
+  var subject = new URLSearchParams(location.search).get("subject");
+  if (subject && DATA_FILES[subject]) {
+    window.CURRENT_SUBJECT = subject;
+    document.write('<scr' + 'ipt src="' + DATA_FILES[subject] + '"></scr' + 'ipt>');
+  }
+})();
+</script>
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
