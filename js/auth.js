@@ -9,14 +9,31 @@ password:"SDM",
 name:"SDM"
 
 },
-
 {
 
-username:"DSP",
+username:"vishwa",
 
-password:"DSP",
+password:"vishwa",
 
-name:"DSP"
+name:"Vishwa"
+
+},
+{
+
+username:"saurabh",
+
+password:"saurabh",
+
+name:"Saurabh, IAS"
+
+},
+{
+
+username:"Abhishek",
+
+password:"Abhishek",
+
+name:"Abhishek"
 
 },
 
