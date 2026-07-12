@@ -11,18 +11,18 @@ name:"SDM"
 },
 {
 
-username:"vishwa",
+username:"Vishwa",
 
-password:"vishwa",
+password:"Vishwa",
 
 name:"Vishwa"
 
 },
 {
 
-username:"saurabh",
+username:"Saurabh",
 
-password:"saurabh",
+password:"Saurabh",
 
 name:"Saurabh, IAS"
 
