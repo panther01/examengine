@@ -127,7 +127,7 @@ function defaultState() {
 
     optionOrder: {},
 
-    theme: "light",
+    theme: "dark",
 
     shuffle: false,
 
