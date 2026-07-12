@@ -476,6 +476,7 @@ if(isCorrect){
 }
 
   saveState();
+  Storage.recordStudyActivity(); // marks today as a study day for the global streak
   updateProgressUI();
   renderQuestion(q.id, false);
   if (state.autoAdvance && q._pos < TOTAL_Q - 1) {
