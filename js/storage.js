@@ -19,6 +19,8 @@ const Storage = {
 
     progressPrefix: "progress_",
 
+    streakPrefix: "streak_",
+
 
     //----------------------------------
     // USER
@@ -111,6 +113,92 @@ const Storage = {
 
 
     //----------------------------------
+    // STREAK (global, account-wide — not per subject)
+    //----------------------------------
+
+    getStreakKey(){
+
+        const user=this.getCurrentUser();
+
+        if(!user) return null;
+
+        return this.streakPrefix+user.username;
+
+    },
+
+    // Call this whenever the user actually does practice
+    // (e.g. answers a question) — not just on page load.
+    recordStudyActivity(){
+
+        const key=this.getStreakKey();
+
+        if(!key) return;
+
+        const today=new Date().toDateString();
+
+        const raw=localStorage.getItem(key);
+
+        let data=raw?JSON.parse(raw):{count:0,lastStudyDate:null};
+
+        if(data.lastStudyDate===today){
+
+            // already logged today, streak unchanged
+            return;
+
+        }
+
+        const yesterday=new Date();
+        yesterday.setDate(yesterday.getDate()-1);
+
+        if(data.lastStudyDate===yesterday.toDateString()){
+
+            data.count+=1; // studied yesterday too -> streak continues
+
+        }else{
+
+            data.count=1; // gap since last study (or brand new) -> restart
+
+        }
+
+        data.lastStudyDate=today;
+
+        localStorage.setItem(key,JSON.stringify(data));
+
+    },
+
+    // Read-only: current streak, auto-expiring if the user
+    // hasn't studied today or yesterday (so the dashboard never
+    // shows a stale streak just because no one wrote to it).
+    getStreak(){
+
+        const key=this.getStreakKey();
+
+        if(!key) return 0;
+
+        const raw=localStorage.getItem(key);
+
+        if(!raw) return 0;
+
+        const data=JSON.parse(raw);
+
+        const today=new Date().toDateString();
+
+        const yesterday=new Date();
+        yesterday.setDate(yesterday.getDate()-1);
+
+        if(data.lastStudyDate!==today &&
+           data.lastStudyDate!==yesterday.toDateString()){
+
+            return 0;
+
+        }
+
+        return data.count||0;
+
+    },
+
+
+    //----------------------------------
     // DASHBOARD
     //----------------------------------
 
@@ -126,8 +214,8 @@ const Storage = {
             "science",
             "polity",
             "geography",
-            "Environment",
-            "Economy"
+            "environment",
+            "economics"
 
         ];
 
@@ -230,6 +318,8 @@ const Storage = {
             wrong,
 
             bookmarks,
+
+            streak:this.getStreak(),
 
             accuracy:
 
