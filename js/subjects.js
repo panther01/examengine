@@ -65,6 +65,18 @@ const progress = {
         progress:63,
         accuracy:81,
         bookmarks:25
+    },
+
+    economics:{
+        progress:0,
+        accuracy:0,
+        bookmarks:0
+    },
+
+    environment:{
+        progress:0,
+        accuracy:0,
+        bookmarks:0
     }
 
 };
@@ -81,9 +93,9 @@ window.onload = () =>{
 
     loadSubject("geography");
 
-    loadSubject("Environment");
+    loadSubject("environment");
 
-    loadSubject("Economy");
+    loadSubject("economics");
 
 }
 
