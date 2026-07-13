@@ -104,7 +104,7 @@ if (subjectScreen) {
 }
 
 const appScreen = document.getElementById("appScreen");
-appScreen.style.display = "block";
+appScreen.style.display = "grid";
 
 document.title = `${meta.title} · UPPSC Quiz`;
 
@@ -127,7 +127,7 @@ function defaultState() {
 
     optionOrder: {},
 
-    theme: "dark",
+    theme: "light",
 
     shuffle: false,
 
